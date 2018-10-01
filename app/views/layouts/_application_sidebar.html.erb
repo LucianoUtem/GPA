@@ -1,0 +1,52 @@
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row w3-pale-blue w3-border">
+    <div class="w3-col s4 ">
+      <img src="/img/generic-user.png"/ class="w3-circle w3-margin-right" style="height: 50px;width: 48px;">
+    </div>
+    <div class="w3-col s8 w3-bar">
+        <span>  Bienvenido <strong><%= current_user.nombre  %></strong></span></br>
+          <%= link_to " Cerrar Sesion",destroy_user_session_path , method: :delete ,  :class => "fa fa-power-off"%></br>
+          <%= link_to " Datos Personales",user_path(current_user.id) ,  :class => "fa fa-user"%></br>
+          <%= link_to " Editar Datos Personales",edit_user_path(current_user.id) ,  :class => "fa fa-cog"%>
+      
+    </div>
+  </div>
+  <hr>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <% if current_user.role.nombre == "admin"%>
+      <a href="/alumnos_sin_asignar" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-users fa-fw"></i> Asignar alumnos</a>
+      <a href = "/user" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-users"></i>  Usuarios</a>
+      <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-pie-chart"></i>  Estadísticas</button>
+      <div id="Demo1" class="w3-hide">
+          <a href="/estadistica_alum" class="w3-button w3-block w3-left-align"><i class="fa fa-list"></i>  Segun Año de Practica</a>
+          <a href="/estadistica_area" class="w3-button w3-block w3-left-align"><i class="fa fa-list"></i>  Segun Area</a>
+          <a href="/estadistica_empresa" class="w3-button w3-block w3-left-align"><i class="fa fa-list"></i>  Segun Empresa</a>
+          <a href="/estadistica_herramientas" class="w3-button w3-block w3-left-align"><i class="fa fa-list"></i>  Segun Herramienta </a>
+        </div>
+    <% end %>
+    <% if current_user.role.nombre == "secretaria"%>
+      <button onclick="myFunction('funcionesAlumno')" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-pie-chart"></i>  Inscripción de alumnos</button>
+        <div id="funcionesAlumno" class="w3-hide">
+          <a href="ofertaAlumno" class="w3-button w3-block w3-left-align"><i class="fa fa-plus"></i>  Agregar Alumno </a>
+          <a href="Apendientes" class="w3-button w3-block w3-left-align"><i class="fa fa-plus"></i>  Alumnos Pendientes </a>
+        </div>
+      <button onclick="myFunction('funcionesPracticas')" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-pie-chart"></i>  Ofertas de Practicas</button>
+        <div id="funcionesPracticas" class="w3-hide">
+          <a href="ver_actuales" class="w3-button w3-block w3-left-align"><i class="fa fa-list"></i>  Listar Practicas </a>
+          <a href="/oferta" class="w3-button w3-block w3-left-align"><i class="fa fa-plus"></i>  Agregar Practica </a>
+        </div>
+    <% end %>
+    <% if current_user.role.nombre == "profesorguia"%>
+      <a href="/alumnos" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-file-text"></i>  Alumnos</a>
+      <a href="/planilla" class="w3-button w3-block w3-left-align w3-border"><i class="fa fa-file-text"></i>  Planilla de Evaluaciones</a>
+
+    <% end %>
+    
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
