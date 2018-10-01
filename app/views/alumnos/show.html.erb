@@ -1,0 +1,63 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Mostrando <small>Alumno</small></h1>
+
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <% if current_user.role.nombre == "secretaria"%>
+       <li><%= link_to "Alumnos", Apendientes_path() %></li>
+      <% end %>
+      <% if current_user.role.nombre == "profesorguia"%>
+       <li><%= link_to "Alumnos", alumnos_path %></li>
+      <% end  %>
+      <li class="active">Mostrar</li>
+    </ol>
+  </section>
+<% end %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+    
+
+        <div class="panel panel-default">
+      
+            <div class="pull-right">
+                 
+            <%= link_to "Imprimir", "#", onclick: "printPage()",:class => "btn btn-info" %>  
+   
+          </div>
+          <div class="panel-body">
+            <dt>Nombre:</dt>
+            <dd><%= @alumno.nombre %></dd>
+
+            <dt>Apellido:</dt>
+            <dd><%= @alumno.apellido %></dd>
+
+            <dt>Rut:</dt>
+            <dd><%= @alumno.rut %></dd>
+
+            <dt>Codigo carrera:</dt>
+            <dd><%= @alumno.codigo_carrera %></dd>
+
+            <dt>Semestre:</dt>
+            <dd><%= @alumno.semestre %></dd>
+
+            <dt>Ano:</dt>
+            <dd><%= @alumno.ano %></dd>
+          </div>
+        </div>
+<script type="text/javascript">
+  function printPage() {
+    window.print();
+  }
+</script>
+
+
+  
+        
+      </div>
+    </div>
+  </div>
+</section>
+
